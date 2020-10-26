@@ -10,7 +10,7 @@ const router = Router();
 //Obtener todos los datos de la colección tasks
 router.get('/', async (req, res) =>{
     const db = await connect();
-    const result = await db.collection('tasks').find({}).toArray();
+    const result = await db.collection('aduanas').find({}).toArray();
     res.json(result);
 });
 
@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
         title: req.body.title,
         description: req. body.description
     };
-    const result = await db.collection('tasks').insertOne(task);
+    const result = await db.collection('aduanas').insertOne(task);
     res.json(result.ops[0]);
 })
 
@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const {id} = req.params;
     const db = await connect();
-    const result = await db.collection('tasks').findOne({_id: ObjectID(id)});
+    const result = await db.collection('aduanas').findOne({_id: ObjectID(id)});
     res.json(result);
 })
 
@@ -38,7 +38,7 @@ router.get('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     const {id} = req.params;
     const db = await connect();
-    const result = await db.collection('tasks').deleteOne({_id:  ObjectID(id)});
+    const result = await db.collection('aduanas').deleteOne({_id:  ObjectID(id)});
     res.json({
         message:  `Task ${id} eliminado.`,
         result

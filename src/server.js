@@ -1,5 +1,5 @@
 import express, {json} from 'express';
-
+const cors = require('cors');
 
 const app = express();
 
@@ -9,6 +9,9 @@ import TaskRoutes from './routes/task.routes';
 
 //Settings
 
+//Es importante instalar el módulo de CORS para poder hacer peticiones desde otros sitios
+app.use(cors());
+
 app.set('port', process.env.PORT || 3000);
 
 //Middlewares
@@ -16,6 +19,6 @@ app.use(json());
 
 //Routes
 app.use(IndexRoutes);
-app.use('/tasks', TaskRoutes);
+app.use('/aduanas', TaskRoutes);
 
 export default app;
